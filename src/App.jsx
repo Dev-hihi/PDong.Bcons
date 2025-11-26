@@ -4,6 +4,8 @@ import {
   Briefcase, GraduationCap, ArrowRight, Mail, Database, Code, 
   TrendingUp, Home, CheckCircle, Smartphone, Users
 } from 'lucide-react';
+// QUAN TRỌNG: Import ảnh của bạn. Đảm bảo tên file là 'avatar.jpg' trong thư mục src/assets/
+import avatarImg from './assets/avatar.jpg'; 
 
 // Animation Variants
 const fadeInUp = {
@@ -55,7 +57,7 @@ const App = () => {
         </div>
       </nav>
 
-      {/* --- HERO SECTION (Personal + Brand) --- */}
+      {/* --- HERO SECTION (AVT NỔI BẬT) --- */}
       <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center min-h-[90vh]">
         <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bcons-gold/10 border border-bcons-gold/20 text-bcons-gold text-xs font-bold mb-6">
@@ -82,17 +84,28 @@ const App = () => {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }} className="relative hidden lg:block">
-          <div className="relative glass-card rounded-2xl p-8 transform rotate-3 hover:rotate-0 transition-all duration-500 shadow-2xl border border-gray-700">
-            <div className="space-y-4">
-              <div className="p-8 glass-card rounded-xl border border-bcons-gold/20 text-center">
-                <Home size={48} className="mx-auto text-bcons-gold mb-3" />
-                <p className="text-4xl font-extrabold text-bcons-gold">7+</p>
-                <p className="text-gray-400">Dự án đã tham gia</p>
-              </div>
+        {/* --- KHỐI ẢNH ĐẠI DIỆN MỚI (New AVT Block) --- */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }} 
+          animate={{ opacity: 1, scale: 1 }} 
+          transition={{ duration: 0.8, delay: 0.2 }} 
+          className="relative flex justify-center items-center h-full"
+        >
+          {/* Vòng Glow mờ (Bóng mờ) */}
+          <div className="absolute w-80 h-80 bg-bcons-gold/30 rounded-full blur-[100px] opacity-50 animate-pulse"></div>
+          
+          <div className="relative transform rotate-3 hover:rotate-0 transition-all duration-700">
+            <div className="w-80 h-80 overflow-hidden rounded-2xl border-4 border-bcons-gold shadow-2xl shadow-bcons-gold/40">
+              <img 
+                src={avatarImg} 
+                alt="Nguyen Phuong Dong Avatar" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </motion.div>
+        {/* --- KẾT THÚC KHỐI ẢNH ĐẠI DIỆN --- */}
+
       </section>
       
       {/* --- SKILLS SECTION (The Hybrid Mindset) --- */}
