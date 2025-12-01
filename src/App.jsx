@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Briefcase, GraduationCap, ArrowRight, Mail, Database, Code, 
@@ -9,6 +9,7 @@ import avatarImg from './assets/avatar.jpg';
 import bconsCityImg from './assets/bcons-city-image.jpg';
 import bconsNewSkyImg from './assets/bcons-new-sky-image.jpg';
 import bconsCenterCityImg from './assets/bcons-center-city-image.jpg';
+import bconsJoinImg from './assets/bcons-join.jpg';
 
 // Animation Variants
 const fadeInUp = {
@@ -52,6 +53,8 @@ const CaseStudyCard = ({ title, category, description, tags, icon: Icon, image }
 
 
 const App = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <div className="min-h-screen bg-bg-light text-text-dark font-sans overflow-x-hidden">
       
@@ -130,56 +133,107 @@ const App = () => {
 
       </section>
       
-      {/* --- SKILLS SECTION (Giữ lại style Light Mode) --- */}
-      <section id="skills" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      {/* --- TIMELINE / THÀNH TÍCH SECTION --- */}
+      <section id="achievements" className="relative py-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 z-10 relative">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Kỹ Năng <span className="text-primary-gold">Độc Đáo</span></h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Thành <span className="text-primary-gold">Tích</span></h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Sự kết hợp giữa tư duy kinh doanh và công nghệ.
+              Hành trình phát triển và những dấu ấn đáng nhớ.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Business Mindset */}
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="card-style p-8 rounded-xl hover:shadow-xl transition-colors">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-cta-red/10 text-cta-red rounded-lg"><TrendingUp size={24}/></div>
-                <h3 className="text-2xl font-bold text-gray-900">Kinh Doanh & Phân Tích</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {['Financial Modeling', 'Real Estate Valuation', 'Market Research (IB)', 'Lead Generation (Bcons)', 'CRM Management', 'Business Strategy'].map((skill) => (
-                  <div key={skill} className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle size={16} className="text-cta-red"/> {skill}
+          <div className="relative border-l-4 border-gray-200 pl-8 space-y-12 max-w-2xl mx-auto">
+            {/* Timeline Item 2025 */}
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative group">
+              <div className="absolute -left-3.5 top-0 w-7 h-7 bg-primary-gold rounded-full border-4 border-white z-10"></div>
+              <div className="card-style p-6 rounded-lg">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-primary-gold mb-2">2025</h3>
+                    <p className="text-lg text-text-dark">Gia nhập Bcons Group</p>
+                    <p className="text-gray-600 mt-2">Bắt đầu hành trình tại tập đoàn Bcons Group với vai trò Chuyên Viên Kinh doanh.</p>
                   </div>
-                ))}
+                  <button 
+                    onClick={() => setSelectedImage(bconsJoinImg)}
+                    className="text-primary-gold hover:text-secondary-gold text-2xl transition-colors flex-shrink-0"
+                  >
+                    +
+                  </button>
+                </div>
+                
+                {/* Hover Image */}
+                <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 w-64 h-40 rounded-lg overflow-hidden shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none group-hover:pointer-events-auto z-20 hidden md:block">
+                  <img 
+                    src={bconsJoinImg} 
+                    alt="Gia nhập Bcons" 
+                    className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
+                    onClick={() => setSelectedImage(bconsJoinImg)}
+                    onError={(e) => e.target.src = "https://placehold.co/256x160/FBBF24/1F2937?text=Gia+nhap+BCONS"}
+                  />
+                </div>
               </div>
             </motion.div>
 
-            {/* Tech Stack */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="card-style p-8 rounded-xl hover:shadow-xl transition-colors">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-primary-gold/10 text-primary-gold rounded-lg"><Code size={24}/></div>
-                <h3 className="text-2xl font-bold text-gray-900">Công Cụ & Công Nghệ</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {['Data Analysis (SQL/Excel)', 'Web Development (React)', 'Python Scripting', 'Git/Version Control', 'Vite/Tailwind CSS', 'Digital Automation'].map((skill) => (
-                  <div key={skill} className="flex items-center gap-2 text-gray-700">
-                    <CheckCircle size={16} className="text-primary-gold"/> {skill}
+            {/* Timeline Item 2026 */}
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative group">
+              <div className="absolute -left-3.5 top-0 w-7 h-7 bg-gray-400 rounded-full border-4 border-white z-10"></div>
+              <div className="card-style p-6 rounded-lg">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-600 mb-2">2026</h3>
+                    <p className="text-lg text-text-dark">Đang cập nhật...</p>
+                    <p className="text-gray-600 mt-2">Nội dung sẽ được cập nhật sớm.</p>
                   </div>
-                ))}
+                  <button className="text-gray-400 hover:text-gray-600 text-2xl transition-colors flex-shrink-0">
+                    +
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Timeline Item 2027 */}
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative group">
+              <div className="absolute -left-3.5 top-0 w-7 h-7 bg-gray-400 rounded-full border-4 border-white z-10"></div>
+              <div className="card-style p-6 rounded-lg">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-600 mb-2">2027</h3>
+                    <p className="text-lg text-text-dark">Đang cập nhật...</p>
+                    <p className="text-gray-600 mt-2">Nội dung sẽ được cập nhật sớm.</p>
+                  </div>
+                  <button className="text-gray-400 hover:text-gray-600 text-2xl transition-colors flex-shrink-0">
+                    +
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Timeline Item 2028 */}
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative group">
+              <div className="absolute -left-3.5 top-0 w-7 h-7 bg-gray-400 rounded-full border-4 border-white z-10"></div>
+              <div className="card-style p-6 rounded-lg">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-600 mb-2">2028</h3>
+                    <p className="text-lg text-text-dark">Đang cập nhật...</p>
+                    <p className="text-gray-600 mt-2">Nội dung sẽ được cập nhật sớm.</p>
+                  </div>
+                  <button className="text-gray-400 hover:text-gray-600 text-2xl transition-colors flex-shrink-0">
+                    +
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
-
-
+      
       {/* --- PROJECTS / CASE STUDIES SECTION --- */}
       <section id="projects" className="py-20 bg-bg-light">
         <div className="max-w-7xl mx-auto px-6">
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-bold mb-16 text-center text-text-dark">
-            Case Studies tại <span className="text-primary-gold">Bcons Group</span>
+            Dự Án mới <span className="text-primary-gold">Bcons Group</span>
           </motion.h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -306,13 +360,43 @@ const App = () => {
         </div>
       </section>
 
-
       {/* --- COPYRIGHT FOOTER --- */}
       <footer className="py-6 bg-gray-100 border-t border-gray-200">
         <div className="max-w-7xl mx-auto px-6 text-center text-gray-500 text-sm">
           © 2025 Nguyen Phuong Dong. All rights reserved. | Build with React & Tailwind.
         </div>
       </footer>
+
+      {/* --- MODAL ĐỂ XEM ẢNH LỚN --- */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <motion.div 
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            className="relative max-w-4xl max-h-[90vh] bg-white rounded-xl overflow-hidden shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Nút đóng */}
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 bg-cta-red hover:bg-red-700 text-white w-10 h-10 rounded-full flex items-center justify-center z-10 font-bold text-xl"
+            >
+              ✕
+            </button>
+
+            {/* Ảnh */}
+            <img 
+              src={selectedImage} 
+              alt="Ảnh chi tiết"
+              className="w-full h-full object-contain"
+            />
+          </motion.div>
+        </div>
+      )}
 
     </div>
   );
