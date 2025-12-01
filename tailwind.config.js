@@ -1,3 +1,4 @@
+// TRONG FILE: tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -7,15 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        bcons: {
-          gold: '#FBBF24', // Vàng sáng logo
-          dark: '#111827', // Nền tối
-          red: '#EF4444',  // Đỏ nhấn
-        }
+        'primary-gold': '#FBBF24',
+        'secondary-gold': '#EAB308',
+        'bg-light': '#F9FAFB',     
+        'text-dark': '#1F2937',    
+        'cta-red': '#DC2626',      
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-      }
+      },
     },
   },
   plugins: [],

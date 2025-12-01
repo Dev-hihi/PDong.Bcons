@@ -1,11 +1,24 @@
+/* stylelint-disable */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* stylelint-enable */
 
-body { background-color: #111827; color: white; }
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+body { 
+  background-color: #F9FAFB; /* Nền trắng ngà (bg-light) */
+  color: #1F2937; /* Chữ màu xám đen (text-dark) */
+}
+
+/* Định nghĩa lại style cho các Card (Nền trắng, viền nhẹ) */
+.card-style {
+  background: white;
+  border: 1px solid #E5E7EB; 
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.08); /* Bóng mờ nhẹ */
+  transition: all 0.3s ease;
+}
+
+/* Thêm hiệu ứng vàng lấp lánh cho ảnh */
+.gold-glow {
+    box-shadow: 0 0 50px -12px rgba(251, 191, 36, 0.5);
 }
